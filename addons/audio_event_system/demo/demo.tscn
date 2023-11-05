@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://2pleihbt61ms"]
+
+[ext_resource type="Script" path="res://addons/audio_event_system/demo/demo.gd" id="1_26pg0"]
+[ext_resource type="Script" path="res://addons/audio_event_system/scripts/AudioEventEmitter3D.gd" id="1_vield"]
+[ext_resource type="Resource" uid="uid://dqtqhgq765u3n" path="res://addons/audio_event_system/demo/events/test_event.tres" id="4_6qgk5"]
+[ext_resource type="Texture2D" uid="uid://ct0kerjymx8x" path="res://addons/audio_event_system/demo/textures/emitter_tex.svg" id="5_455dg"]
+[ext_resource type="Material" uid="uid://b01kcje06vpvh" path="res://addons/audio_event_system/demo/materials/prototype_mat.tres" id="6_vp1wc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4sin"]
+ground_bottom_color = Color(0.435294, 0.458824, 0.490196, 1)
+
+[sub_resource type="Sky" id="Sky_kteuv"]
+sky_material = SubResource("ProceduralSkyMaterial_w4sin")
+
+[sub_resource type="Environment" id="Environment_jerdp"]
+background_mode = 2
+sky = SubResource("Sky_kteuv")
+tonemap_mode = 3
+fog_enabled = true
+fog_light_color = Color(0.733333, 0.760784, 0.8, 1)
+fog_sky_affect = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oali6"]
+size = Vector2(100, 100)
+
+[node name="Demo" type="Node3D"]
+script = ExtResource("1_26pg0")
+test_event = ExtResource("4_6qgk5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jerdp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.965926, -0.25, -0.0669873, 0, -0.258819, 0.965926, -0.258819, -0.933013, -0.25, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = ExtResource("6_vp1wc")
+mesh = SubResource("PlaneMesh_oali6")
+
+[node name="LeftEmitter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.2, 0)
+script = ExtResource("1_vield")
+emitter_event = ExtResource("4_6qgk5")
+metadata/_edit_group_ = true
+
+[node name="Sprite3D" type="Sprite3D" parent="LeftEmitter"]
+pixel_size = 0.001
+billboard = 1
+alpha_cut = 2
+texture = ExtResource("5_455dg")
+
+[node name="RightEmitter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.2, 0)
+script = ExtResource("1_vield")
+emitter_event = ExtResource("4_6qgk5")
+metadata/_edit_group_ = true
+
+[node name="Sprite3D" type="Sprite3D" parent="RightEmitter"]
+pixel_size = 0.001
+billboard = 1
+alpha_cut = 2
+texture = ExtResource("5_455dg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0.5, 1)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+pixel_size = 0.001
+billboard = 1
+text = "Press Space to play a non-localized sound
+Use the Left & Right keys to play a localized sound"
+font_size = 48

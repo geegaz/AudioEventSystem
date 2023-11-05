@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AudioEvent" load_steps=3 format=3 uid="uid://dqtqhgq765u3n"]
+
+[ext_resource type="Script" path="res://addons/audio_event_system/scripts/AudioEvent.gd" id="1_th6vi"]
+[ext_resource type="AudioStream" uid="uid://c2fpm3we1k7yq" path="res://addons/audio_event_system/demo/sounds/coin.wav" id="2_g2hsl"]
+
+[resource]
+script = ExtResource("1_th6vi")
+audio_bus = "Master"
+streams = Array[AudioStream]([ExtResource("2_g2hsl")])
+pitch_min = 0.8
+pitch_max = 1.2
+volume_min = 0.8
+volume_max = 1.2
