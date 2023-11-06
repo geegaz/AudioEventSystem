@@ -13,7 +13,7 @@ The plugin relies on a single resource, the `AudioEvent`. This resource contains
 - a minimum and maximum pitch
 - a minimum and maximum volume
 
-This resource is then used either directly through code by calling one of the `AudioEventManager`'s method, or by using an `AudioEventEmitter`, which is a node dedicated to play an `AudioEvent` and designed as a replacement for an `AudioStreamPlayer` in the scene hierarchy.
+This resource is then used either directly through code by calling one of the `AudioEventManager`'s method, or by using an `AudioEventEmitter` which is a node dedicated to play an `AudioEvent` and designed as a replacement for an `AudioStreamPlayer` in the scene hierarchy.
 
 Example of playing an `AudioEvent` directly with the `AudioEventManager`:
 ```
@@ -34,4 +34,4 @@ func play_event_emitter() -> void:
 Like `AudioStreamPlayer`s, `AudioEventEmitter`s come in 3 types:
 - `AudioEventEmitter`, a non-spatialized emitter for global events
 - `AudioEventEmitter2D`, an emitter spatialized in 2D
-- `AudioEventEmitter2D`, an emitter spatialized in 3D
+- `AudioEventEmitter3D`, an emitter spatialized in 3D
